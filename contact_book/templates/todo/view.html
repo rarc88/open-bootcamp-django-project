@@ -1,0 +1,14 @@
+{% extends 'layout/base.html' %}
+<!--  -->
+{% block 'title' %} Contact View {% endblock %}
+<!--  -->
+{% block 'content' %}
+<span class="button-group"><a href="{% url 'todo.index' %}">Back</a></span>
+<ul class="list">
+  <li><b>Title:</b> {{ todo.title }}</li>
+  <li><b>Description:</b> {{ todo.description }}</li>
+  <li><b>Estimated End:</b> {{ todo.estimated_end }}</li>
+  <li><b>priority:</b> {{ todo.priority }}</li>
+  <li><b>Creation Date:</b> {{ todo.date }}</li>
+</ul>
+{% endblock %}

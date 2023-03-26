@@ -1,0 +1,30 @@
+{% extends 'layout/base.html' %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block 'title' %} Contact {% if id %} Edit {% else %} Create {% endif %}
+{%endblock %}
+<!--  -->
+{% block 'styles' %}
+<link rel="stylesheet" href="{% static 'css/forms.css' %}" />
+{% endblock %}
+<!--  -->
+{% block 'content' %}
+<!--  -->
+{% include 'messages.html' %}
+<span class="button-group"><a href="{% url 'contact.index' %}">Back</a></span>
+<form
+  action="{% if id %}{% url 'contact.edit' id=id %}{% else %}{% url 'contact.create' %}{% endif %}"
+  method="POST"
+>
+  <!--  -->
+  {% csrf_token %}
+  <table>
+    {{ form.as_table }}
+  </table>
+  <div class="wrapper">
+    <input class="form-button" type="submit" value="Save" />
+  </div>
+</form>
+
+{% endblock %}
