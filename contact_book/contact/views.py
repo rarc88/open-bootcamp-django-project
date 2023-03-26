@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
+from django.db.models import Q
+import string
 
 
 from .forms import ContactForm
@@ -11,10 +13,16 @@ def index(req):
     # search = req.GET['search'].strip() if 'search' in req.GET.keys() else None
     search = req.GET.get('search', '').strip()
     if search:
-        contacts = Contact.objects.filter(name__icontains=search)
+        contacts = Contact.objects.filter(
+            Q(name__icontains=search) | Q(last_name__icontains=search))
     else:
         contacts = Contact.objects.all()
-    return render(req, 'contact/index.html', {'contacts': contacts})
+
+    letters = list(string.ascii_uppercase)
+
+    context = {'contacts': contacts, 'letters': letters}
+
+    return render(req, 'contact/index.html', context)
 
 
 def view(req, id):

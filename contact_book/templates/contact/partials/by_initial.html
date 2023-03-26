@@ -1,0 +1,5 @@
+<div>
+  {% for letter in letters %}
+  <a href="{% url 'contact.index' %}?search={{ letter }}">{{ letter }}</a>
+  {% endfor %}
+</div>

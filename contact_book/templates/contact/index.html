@@ -4,15 +4,9 @@
 <!--  -->
 {% block 'content' %}
 <h1>Contacts</h1>
-<form class="search" action="{% url 'contact.index' %}" method="GET">
-  <input
-    class="search-input"
-    type="text"
-    name="search"
-    placeholder="Search contact..."
-  />
-  <input class="button search-button" type="submit" value="Search" />
-</form>
+{% include 'contact/partials/search.html' %}
+<!--  -->
+{% include 'contact/partials/by_initial.html' %}
 <span class="button-group"
   ><a href="{% url 'contact.index' %}">View all</a
   ><a href="{% url 'contact.create' %}">Add</a></span

@@ -4,15 +4,7 @@
 <!--  -->
 {% block 'content' %}
 <h1>TODOs</h1>
-<form class="search" action="{% url 'todo.index' %}" method="GET">
-  <input
-    class="search-input"
-    type="text"
-    name="search"
-    placeholder="Search todo..."
-  />
-  <input class="button search-button" type="submit" value="Search" />
-</form>
+{% include 'todo/partials/search.html' %}
 <span class="button-group"
   ><a href="{% url 'todo.index' %}">View all</a
   ><a href="{% url 'todo.create' %}">Add</a></span

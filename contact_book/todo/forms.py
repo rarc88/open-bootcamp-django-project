@@ -7,3 +7,6 @@ class TodoForm(forms.ModelForm):
     class Meta:
         model = Todo
         exclude = ['date',]
+        widgets = {
+            'estimated_end': forms.DateInput(attrs={'type': 'date'})
+        }
