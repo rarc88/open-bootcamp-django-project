@@ -12,9 +12,13 @@ from .models import Contact
 def index(req):
     # search = req.GET['search'].strip() if 'search' in req.GET.keys() else None
     search = req.GET.get('search', '').strip()
+    letter = req.GET.get('letter', '').strip()
     if search:
         contacts = Contact.objects.filter(
             Q(name__icontains=search) | Q(last_name__icontains=search))
+    elif letter:
+        contacts = Contact.objects.filter(
+            Q(name__istartswith=letter) | Q(last_name__istartswith=letter))
     else:
         contacts = Contact.objects.all()
 
